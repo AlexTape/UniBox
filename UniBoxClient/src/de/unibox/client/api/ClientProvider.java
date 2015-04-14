@@ -2,6 +2,7 @@ package de.unibox.client.api;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -330,6 +331,21 @@ public class ClientProvider {
      */
     public static final void setUrl(final String url) {
         ClientProvider.url = url;
+    }
+
+    /**
+     * Setup scanner.
+     */
+    public static final void setupScanner() {
+        Scanner s = new Scanner(System.in);
+        System.out.print("ServerIP:");
+        ClientProvider.setUrl("http://" + s.next() + ":8080/UniBox");
+        System.out.print("Username:");
+        ClientProvider.setUsername(s.next());
+        System.out.print("Password:");
+        ClientProvider.setPassword(s.next());
+        s.close();
+        System.out.println("ClientProvider booting..");
     }
 
     /**
