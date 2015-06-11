@@ -4,4 +4,4 @@ This Wiki is also published as a GitBook. Both contents are identical. You can e
 
 # GitBook.io
 
-UniBoxManual [Read](http://alextape.gitbooks.io/unibox/content/) [Download](https://www.gitbook.com/download/pdf/book/alextape/unibox)
+UniBoxManual: read [online](http://alextape.gitbooks.io/unibox/content/) or download as [PDF](https://www.gitbook.com/download/pdf/book/alextape/unibox)
