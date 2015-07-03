@@ -36,12 +36,12 @@ public class RunnableLoginAgent extends ThreadTaskImpl {
 				this.urlObject = new URL(this.url
 						+ ClientProvider.getCometURL());
 			} catch (final MalformedURLException e) {
-				ThreadTaskImpl.log.debug(RunnableLoginAgent.class
+				ThreadTaskImpl.log.warn(RunnableLoginAgent.class
 						.getSimpleName() + ": invalid URL detected.");
 				e.printStackTrace();
 			}
 
-			ThreadTaskImpl.log.debug(RunnableLoginAgent.class.getSimpleName()
+			ThreadTaskImpl.log.info(RunnableLoginAgent.class.getSimpleName()
 					+ ": Try to etablish connection to "
 					+ this.urlObject.getPath());
 
@@ -50,7 +50,7 @@ public class RunnableLoginAgent extends ThreadTaskImpl {
 				body = "nick=" + URLEncoder.encode(this.username, "UTF-8")
 						+ "&action=connect&" + "password=" + this.password;
 			} catch (final UnsupportedEncodingException e) {
-				ThreadTaskImpl.log.debug(RunnableLoginAgent.class
+				ThreadTaskImpl.log.warn(RunnableLoginAgent.class
 						.getSimpleName() + ": Unsupported charset required.");
 				e.printStackTrace();
 			}
@@ -96,18 +96,18 @@ public class RunnableLoginAgent extends ThreadTaskImpl {
 
 				for (String line; (line = areader.readLine()) != null;) {
 					if (line.equals("success")) {
-						ThreadTaskImpl.log.debug(RunnableLoginAgent.class
+						ThreadTaskImpl.log.info(RunnableLoginAgent.class
 								.getSimpleName()
 								+ ": connection etablished. Grab cookie..");
 						final List<String> cookies = this.connection
 								.getHeaderFields().get("Set-Cookie");
-						ThreadTaskImpl.log.debug(RunnableLoginAgent.class
+						ThreadTaskImpl.log.info(RunnableLoginAgent.class
 								.getSimpleName()
 								+ ": Save cookie to ClientState..");
 						ClientProvider.setCookie(cookies.get(0));
 					} else {
 						ThreadTaskImpl.log
-								.debug(RunnableLoginAgent.class.getSimpleName()
+								.warn(RunnableLoginAgent.class.getSimpleName()
 										+ ": No valid response. maybe wrong credentials?");
 						throw new IOException("Bad response: " + line);
 					}
@@ -116,7 +116,7 @@ public class RunnableLoginAgent extends ThreadTaskImpl {
 				this.writer.close();
 
 			} catch (final IOException e) {
-				ThreadTaskImpl.log.warn(RunnableLoginAgent.class
+				ThreadTaskImpl.log.error(RunnableLoginAgent.class
 						.getSimpleName()
 						+ ": Fatal error due HTTP transaction.");
 				if (e instanceof ConnectException) {

@@ -75,7 +75,7 @@ public class RunnableDatabaseAgent extends ThreadTaskImpl {
 						.getSimpleName()
 						+ ": Fatal error due HTTP transaction.");
 				if (e instanceof ConnectException) {
-					ThreadTaskImpl.log.warn(RunnableDatabaseAgent.class
+					ThreadTaskImpl.log.info(RunnableDatabaseAgent.class
 							.getSimpleName()
 							+ ": maybe server offline? "
 							+ this.url);
@@ -145,7 +145,7 @@ public class RunnableDatabaseAgent extends ThreadTaskImpl {
 		this.urlObject = new URL(databaseURL + "?" + content);
 
 		ThreadTaskImpl.log
-				.debug(RunnableDatabaseAgent.class.getSimpleName()
+				.info(RunnableDatabaseAgent.class.getSimpleName()
 						+ ": Try to etablish connection to "
 						+ this.urlObject.getPath());
 
@@ -174,7 +174,7 @@ public class RunnableDatabaseAgent extends ThreadTaskImpl {
 		this.urlObject = new URL(databaseURL);
 
 		ThreadTaskImpl.log
-				.debug(RunnableDatabaseAgent.class.getSimpleName()
+				.info(RunnableDatabaseAgent.class.getSimpleName()
 						+ ": Try to etablish connection to "
 						+ this.urlObject.getPath());
 
@@ -200,7 +200,7 @@ public class RunnableDatabaseAgent extends ThreadTaskImpl {
 			wr.write(postData);
 
 		} catch (final Exception e) {
-			ThreadTaskImpl.log.debug(RunnableDatabaseAgent.class
+			ThreadTaskImpl.log.warn(RunnableDatabaseAgent.class
 					.getSimpleName() + ": Could not write parameters");
 			e.printStackTrace();
 		}

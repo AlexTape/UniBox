@@ -22,7 +22,7 @@ import de.unibox.core.provider.ObjectSerializerImpl;
  * component's <code>addRunnableCometListener<code> method. When
  * the runnableComet event occurs, that object's appropriate
  * method is invoked.
- *
+ * 
  * Incoming Messages will be handled here.
  *
  * @see java.util.concurrent.BlockingQueue
@@ -45,7 +45,7 @@ public class RunnableCometListener extends ThreadTaskImpl {
 			final String urlString = ClientProvider.getUrl()
 					+ ClientProvider.getCometURL() + "?0";
 
-			ThreadTaskImpl.log.debug("RunnableCometListener is connecting to: "
+			ThreadTaskImpl.log.info("RunnableCometListener is connecting to: "
 					+ urlString);
 
 			url = new URL(urlString);
@@ -89,9 +89,8 @@ public class RunnableCometListener extends ThreadTaskImpl {
 				for (String line; (line = areader.readLine()) != null;) {
 					final CommunicatorMessage message = ObjectSerializerImpl
 							.stringToObject(line, CommunicatorMessage.class);
-					ThreadTaskImpl.log
-							.debug("RunnableCometListener recieving: "
-									+ message);
+					ThreadTaskImpl.log.info(RunnableMessageSender.class
+							.getSimpleName() + "recieving: " + message);
 					ClientProvider.recieveMessage(message);
 				}
 			} catch (final SocketTimeoutException e) {
@@ -106,7 +105,7 @@ public class RunnableCometListener extends ThreadTaskImpl {
 			ThreadTaskImpl.log.warn(RunnableMessageSender.class.getSimpleName()
 					+ ": Fatal error due HTTP transaction.");
 			if (e instanceof ConnectException) {
-				ThreadTaskImpl.log.warn(RunnableMessageSender.class
+				ThreadTaskImpl.log.info(RunnableMessageSender.class
 						.getSimpleName()
 						+ ": maybe server offline? "
 						+ this.url);

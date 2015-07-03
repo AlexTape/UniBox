@@ -83,14 +83,14 @@ public class ClientProvider {
 		try {
 			final Stage stage = primaryStage;
 			final Node node = stage.getScene().getRoot();
-			ClientProvider.log.debug(ClientProvider.class.getSimpleName()
+			ClientProvider.log.info(ClientProvider.class.getSimpleName()
 					+ ": binding " + primaryStage);
 			node.addEventHandler(CommunicationEvent.INCOMING_MESSAGE,
 					messageHandler);
 			CommunicationEvent.setTarget(node);
 		} catch (final Exception e) {
-			ClientProvider.log.warn(ClientProvider.class.getSimpleName()
-					+ ": bind() failed..");
+			ClientProvider.log.error(ClientProvider.class.getSimpleName()
+					+ ": bind() failed.. Stage or IncomingMessageHandler are NULL.");
 			e.printStackTrace();
 		}
 	}
@@ -102,19 +102,19 @@ public class ClientProvider {
 		try {
 
 			ThreadEngine.getInstance().run(new RunnableMessageSender());
-			ClientProvider.log.debug(ClientProvider.class.getSimpleName()
+			ClientProvider.log.info(ClientProvider.class.getSimpleName()
 					+ ": RunnableMessageSender started..");
 
 			ThreadEngine.getInstance().run(new RunnableMessageMediator());
-			ClientProvider.log.debug(ClientProvider.class.getSimpleName()
+			ClientProvider.log.info(ClientProvider.class.getSimpleName()
 					+ ": RunnableMessageMediator started..");
 
 			ThreadEngine.getInstance().run(new RunnableCometListener());
-			ClientProvider.log.debug(ClientProvider.class.getSimpleName()
+			ClientProvider.log.info(ClientProvider.class.getSimpleName()
 					+ ": RunnableCometListener started..");
 
 			ThreadEngine.getInstance().run(new RunnableDatabaseAgent());
-			ClientProvider.log.debug(ClientProvider.class.getSimpleName()
+			ClientProvider.log.info(ClientProvider.class.getSimpleName()
 					+ ": RunnableDatabaseAgent started..");
 
 		} catch (final Exception e) {
@@ -264,7 +264,7 @@ public class ClientProvider {
 	 *            the message
 	 */
 	public static void recieveMessage(final CommunicatorMessage message) {
-		ClientProvider.log.debug(ClientProvider.class.getSimpleName()
+		ClientProvider.log.info(ClientProvider.class.getSimpleName()
 				+ ": received message: " + message);
 		ClientProvider.getIncomingMessages().add(message);
 	}
@@ -313,7 +313,7 @@ public class ClientProvider {
 	 *            the message
 	 */
 	public static void sendCustomMessage(final CommunicatorMessage message) {
-		ClientProvider.log.debug(ClientProvider.class.getSimpleName()
+		ClientProvider.log.info(ClientProvider.class.getSimpleName()
 				+ ": sending message: " + message);
 		ClientProvider.getOutgoingMessages().add(message);
 	}
@@ -364,7 +364,7 @@ public class ClientProvider {
 	 *            the new cookie
 	 */
 	public static void setCookie(final String cookie) {
-		ClientProvider.log.debug(ClientProvider.class.getSimpleName()
+		ClientProvider.log.info(ClientProvider.class.getSimpleName()
 				+ ": received cookie: " + cookie);
 		ClientProvider.cookie = cookie;
 	}
@@ -402,7 +402,7 @@ public class ClientProvider {
 					Helper.encodeBase64(password), "UTF-8");
 		} catch (final UnsupportedEncodingException e) {
 			ClientProvider.log.debug(ClientProvider.class.getSimpleName()
-					+ ": Could not able to password.");
+					+ ": Could not set password.");
 			e.printStackTrace();
 		}
 	}
