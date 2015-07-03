@@ -6,11 +6,11 @@ CREATE SCHEMA IF NOT EXISTS `unibox` DEFAULT CHARACTER SET utf8 COLLATE utf8_gen
 USE `unibox`;
 
 -- -----------------------------------------------------
--- Table `unibox`.`Player`
+-- Table `unibox`.`player`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `unibox`.`Player` ;
+DROP TABLE IF EXISTS `unibox`.`player` ;
 
-CREATE TABLE IF NOT EXISTS `unibox`.`Player` (
+CREATE TABLE IF NOT EXISTS `unibox`.`player` (
   `PlayerID` INT NOT NULL AUTO_INCREMENT,
   `AdminRights` TINYINT(1) NOT NULL DEFAULT 0,
   `Name` VARCHAR(45) NOT NULL,
@@ -20,11 +20,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `unibox`.`Category`
+-- Table `unibox`.`category`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `unibox`.`Category` ;
+DROP TABLE IF EXISTS `unibox`.`category` ;
 
-CREATE TABLE IF NOT EXISTS `unibox`.`Category` (
+CREATE TABLE IF NOT EXISTS `unibox`.`category` (
   `CatID` INT NOT NULL AUTO_INCREMENT,
   `GameTitle` VARCHAR(45) NOT NULL,
   `NumberOfPlayers` INT NOT NULL,
@@ -33,11 +33,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `unibox`.`Game`
+-- Table `unibox`.`game`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `unibox`.`Game` ;
+DROP TABLE IF EXISTS `unibox`.`game` ;
 
-CREATE TABLE IF NOT EXISTS `unibox`.`Game` (
+CREATE TABLE IF NOT EXISTS `unibox`.`game` (
   `GameID` INT NOT NULL AUTO_INCREMENT,
   `GameName` VARCHAR(45) NOT NULL,
   `CatID` INT NOT NULL,
@@ -45,18 +45,18 @@ CREATE TABLE IF NOT EXISTS `unibox`.`Game` (
   INDEX `FKGameCategory_idx` (`CatID` ASC),
   CONSTRAINT `FKGameCategory`
     FOREIGN KEY (`CatID`)
-    REFERENCES `unibox`.`Category` (`CatID`)
+    REFERENCES `unibox`.`category` (`CatID`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `unibox`.`Result`
+-- Table `unibox`.`result`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `unibox`.`Result` ;
+DROP TABLE IF EXISTS `unibox`.`result` ;
 
-CREATE TABLE IF NOT EXISTS `unibox`.`Result` (
+CREATE TABLE IF NOT EXISTS `unibox`.`result` (
   `ResultID` INT NOT NULL AUTO_INCREMENT,
   `GameID` INT NOT NULL,
   `PlayerID` INT NOT NULL,
@@ -66,12 +66,12 @@ CREATE TABLE IF NOT EXISTS `unibox`.`Result` (
   INDEX `FKResultGame_idx` (`GameID` ASC),
   CONSTRAINT `FKResultPlayer`
     FOREIGN KEY (`PlayerID`)
-    REFERENCES `unibox`.`Player` (`PlayerID`)
+    REFERENCES `unibox`.`player` (`PlayerID`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `FKResultGame`
     FOREIGN KEY (`GameID`)
-    REFERENCES `unibox`.`Game` (`GameID`)
+    REFERENCES `unibox`.`game` (`GameID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

@@ -32,7 +32,7 @@ public class PlayerInsert extends DatabaseAction<Integer> {
 	public PlayerInsert(final Integer thisAdminRights, final String thisName,
 			final String thisPassword) {
 		super(
-				"INSERT INTO `unibox`.`Player` (`AdminRights`, `Name`, `Password`) VALUES (?, ?, ?);");
+				"INSERT INTO player (AdminRights, Name, Password) VALUES (?, ?, ?);");
 		this.adminRights = thisAdminRights;
 		this.name = thisName;
 		this.password = thisPassword;

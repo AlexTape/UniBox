@@ -83,7 +83,7 @@ public class RunnableMessageSender extends ThreadTaskImpl {
 			try {
 				this.urlObject = new URL(recieverUrl);
 			} catch (final MalformedURLException e) {
-				ThreadTaskImpl.log.debug(RunnableMessageSender.class
+				ThreadTaskImpl.log.warn(RunnableMessageSender.class
 						.getSimpleName() + ": invalid URL detected.");
 				e.printStackTrace();
 			}
@@ -96,13 +96,13 @@ public class RunnableMessageSender extends ThreadTaskImpl {
 			String body = null;
 
 			try {
-				body = "action=post&message="
+				body = "action=push&message="
 						+ URLEncoder.encode(
 								ObjectSerializerImpl.objectToString(message),
 								"UTF-8");
 
 			} catch (final UnsupportedEncodingException e1) {
-				ThreadTaskImpl.log.debug(RunnableMessageSender.class
+				ThreadTaskImpl.log.error(RunnableMessageSender.class
 						.getSimpleName()
 						+ ": FATAL ERROR - charset issue in parameters.");
 				e1.printStackTrace();
@@ -134,11 +134,12 @@ public class RunnableMessageSender extends ThreadTaskImpl {
 						new InputStreamReader(this.connection.getInputStream()));
 
 				for (String line; (line = areader.readLine()) != null;) {
-					ThreadTaskImpl.log.debug("Send Result: " + line);
+					ThreadTaskImpl.log.debug(RunnableMessageSender.class
+							.getSimpleName() + " Result: " + line);
 					ClientProvider.recieveMessage(message);
 				}
 			} catch (final IOException e) {
-				ThreadTaskImpl.log.warn(RunnableMessageSender.class
+				ThreadTaskImpl.log.error(RunnableMessageSender.class
 						.getSimpleName()
 						+ ": Fatal error due HTTP transaction.");
 				if (e instanceof ConnectException) {

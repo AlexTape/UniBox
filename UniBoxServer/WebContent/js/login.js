@@ -8,9 +8,6 @@ $(document).ready(function() {
 		case "logout":
 			swal("Good job!", "You are logged out!", "success");
 			break;
-		default:
-			swal("Ups..", "Unhandled: " + handle, "error");
-			break;
 		}
 	}
 	$("#loginForm").submit(function() {

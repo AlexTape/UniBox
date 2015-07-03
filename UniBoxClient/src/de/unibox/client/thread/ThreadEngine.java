@@ -79,12 +79,12 @@ public class ThreadEngine {
 	 * Block till done.
 	 */
 	public void blockTillDone() {
-		ThreadEngine.log.debug("ThreadEngine: blockTillDone()");
+		ThreadEngine.log.debug(this.getClass().getSimpleName() + ": blockTillDone()");
 		for (final Future<?> future : this.getFutures()) {
 			try {
 				future.get();
 			} catch (InterruptedException | ExecutionException e) {
-				ThreadEngine.log.error("ThreadEngine: blockTillDone() failed!");
+				ThreadEngine.log.error(this.getClass().getSimpleName() + ": blockTillDone() failed!");
 				e.printStackTrace();
 			}
 		}
