@@ -64,6 +64,11 @@ public class ClientProvider {
 
 	/** The username. */
 	private static String username = null;
+	
+	/** Default Main for deploying issue. */
+	public static void main(String[] args) {
+		System.out.println("UniBoxClient [release]");
+	}
 
 	/**
 	 * Bind.

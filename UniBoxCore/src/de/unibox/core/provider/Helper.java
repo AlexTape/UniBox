@@ -14,6 +14,15 @@ import biz.source_code.base64Coder.Base64Coder;
  */
 public final class Helper {
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
+	public static void main(String[] args) {
+		System.out.println("UniBoxCore [release]");
+	}
+
     /**
      * Decode base64.
      *
