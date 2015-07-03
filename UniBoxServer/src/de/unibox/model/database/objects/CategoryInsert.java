@@ -27,7 +27,7 @@ public class CategoryInsert extends DatabaseAction<Integer> {
 	public CategoryInsert(final String thisGameTitle,
 			final int thisNumberOfPlayers) {
 		super(
-				"INSERT INTO `unibox`.`Category` (`GameTitle`, `NumberOfPlayers`) VALUES (?, ?);");
+				"INSERT INTO category (GameTitle, NumberOfPlayers) VALUES (?, ?);");
 		this.gameTitle = thisGameTitle;
 		this.numberOfPlayers = thisNumberOfPlayers;
 	}

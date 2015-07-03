@@ -32,7 +32,7 @@ public class ResultInsert extends DatabaseAction<Integer> {
 	public ResultInsert(final Integer thisGameID, final Integer thisPlayerID,
 			final Integer thisScoring) {
 		super(
-				"INSERT INTO `unibox`.`Result` (`GameID`, `PlayerID`, `Scoring`) VALUES (?, ?, ?);");
+				"INSERT INTO result (GameID, PlayerID, Scoring) VALUES (?, ?, ?);");
 		this.gameID = thisGameID;
 		this.playerID = thisPlayerID;
 		this.scoring = thisScoring;
