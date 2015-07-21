@@ -22,6 +22,12 @@ public class DemoApplication extends Application {
 	 *            the arguments
 	 */
 	public static void main(final String[] args) {
+		
+	    // init credentials
+	    ClientProvider.setIp(args[0]);
+	    ClientProvider.setUsername(args[1]);
+	    ClientProvider.setPassword(args[2]);
+		
 		Application.launch(args);
 	}
 
@@ -33,19 +39,12 @@ public class DemoApplication extends Application {
 	@Override
 	public final void start(final Stage primaryStage) {
 		
-		// set logging for Client API
-//		Logger.setDebugLogging(false);
-//		Logger.setInfoLogging(false);
-//		Logger.setWarningsLogging(false);
-//		Logger.setErrorLogging(false);
+		// to get a more qualified logging, you are able to set logging levels "true" like
+		// Logger.setDebugLogging(false);
+		// Logger.setInfoLogging(false);
+		// Logger.setWarningsLogging(false);
+		// Logger.setErrorLogging(false);
 		
-		// define server location
-		ClientProvider.setIp("localhost");
-
-		// define user credentials
-		ClientProvider.setUsername("Admin");
-		ClientProvider.setPassword("user");
-
 		// login and connect
 		ClientProvider.login();
 		ClientProvider.connect();
