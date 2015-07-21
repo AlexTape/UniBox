@@ -2,7 +2,8 @@ package de.unibox.client.thread.runnable;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+import de.unibox.core.provider.Logger;
 
 /**
  * The Class RunnableThreadMonitor.

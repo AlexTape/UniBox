@@ -9,7 +9,8 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+import de.unibox.core.provider.Logger;
 
 import de.unibox.client.thread.implementation.RejectedExecutionHandlerImpl;
 import de.unibox.client.thread.implementation.ThreadTaskImpl;

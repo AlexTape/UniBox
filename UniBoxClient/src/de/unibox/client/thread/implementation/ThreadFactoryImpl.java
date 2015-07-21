@@ -5,7 +5,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+import de.unibox.core.provider.Logger;
 
 /**
  * The Class ThreadFactoryImpl.

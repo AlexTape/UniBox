@@ -9,7 +9,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+import de.unibox.core.provider.Logger;
 
 import de.unibox.client.events.CommunicationEvent;
 import de.unibox.client.events.DatabaseEvent;
@@ -65,11 +66,6 @@ public class ClientProvider {
 	/** The username. */
 	private static String username = null;
 	
-	/** Default Main for deploying issue. */
-	public static void main(String[] args) {
-		System.out.println("UniBoxClient [release]");
-	}
-
 	/**
 	 * Bind.
 	 *

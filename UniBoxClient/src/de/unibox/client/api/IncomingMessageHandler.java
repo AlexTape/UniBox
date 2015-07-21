@@ -2,7 +2,8 @@ package de.unibox.client.api;
 
 import javafx.event.EventHandler;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+import de.unibox.core.provider.Logger;
 
 import de.unibox.client.events.CommunicationEvent;
 

@@ -45,7 +45,7 @@ public class RunnableCometListener extends ThreadTaskImpl {
 			final String urlString = ClientProvider.getUrl()
 					+ ClientProvider.getCometURL() + "?0";
 
-			ThreadTaskImpl.log.info("RunnableCometListener is connecting to: "
+			ThreadTaskImpl.log.debug("RunnableCometListener is connecting to: "
 					+ urlString);
 
 			url = new URL(urlString);
@@ -97,7 +97,7 @@ public class RunnableCometListener extends ThreadTaskImpl {
 				// just rebooting the litener instance after fired
 				// setReadTimeout(),
 				// setConnectTimeout()
-				ThreadTaskImpl.log.info(RunnableMessageSender.class
+				ThreadTaskImpl.log.debug(RunnableMessageSender.class
 						.getSimpleName() + ": Rebooting listener instance..!");
 				this.run();
 			}
@@ -112,7 +112,7 @@ public class RunnableCometListener extends ThreadTaskImpl {
 			}
 			e.printStackTrace();
 		} finally {
-			ThreadTaskImpl.log.info(RunnableMessageSender.class.getSimpleName()
+			ThreadTaskImpl.log.debug(RunnableMessageSender.class.getSimpleName()
 					+ ": Listener shutdown!");
 		}
 	}

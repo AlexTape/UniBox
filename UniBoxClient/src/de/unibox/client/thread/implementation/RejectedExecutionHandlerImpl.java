@@ -3,7 +3,8 @@ package de.unibox.client.thread.implementation;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+import de.unibox.core.provider.Logger;
 
 /**
  * The Class RejectedExecutionHandlerImpl.
