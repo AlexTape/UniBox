@@ -200,8 +200,8 @@ public class RunnableDatabaseAgent extends ThreadTaskImpl {
 			wr.write(postData);
 
 		} catch (final Exception e) {
-			ThreadTaskImpl.log.warn(RunnableDatabaseAgent.class
-					.getSimpleName() + ": Could not write parameters");
+			ThreadTaskImpl.log.warn(RunnableDatabaseAgent.class.getSimpleName()
+					+ ": Could not write parameters");
 			e.printStackTrace();
 		}
 

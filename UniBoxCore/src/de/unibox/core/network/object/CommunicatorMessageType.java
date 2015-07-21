@@ -5,24 +5,24 @@ package de.unibox.core.network.object;
  */
 public enum CommunicatorMessageType {
 
-    /** The chat. */
-    CHAT,
+	/** The chat. */
+	CHAT,
 
-    /** The error. */
-    ERROR,
+	/** The error. */
+	ERROR,
 
-    /** The game. */
-    GAME,
+	/** The game. */
+	GAME,
 
-    /** The js command. */
-    JS_COMMAND,
+	/** The js command. */
+	JS_COMMAND,
 
-    /** The ping. */
-    PING,
+	/** The ping. */
+	PING,
 
-    /** The system. */
-    SYSTEM,
-    
-    /** The plain. */
-    PLAIN
+	/** The plain. */
+	PLAIN,
+
+	/** The system. */
+	SYSTEM
 }

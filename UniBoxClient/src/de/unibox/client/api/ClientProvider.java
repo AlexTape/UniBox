@@ -8,10 +8,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import javafx.scene.Node;
 import javafx.stage.Stage;
-
-//import org.apache.log4j.Logger;
-import de.unibox.core.provider.Logger;
-
 import de.unibox.client.events.CommunicationEvent;
 import de.unibox.client.events.DatabaseEvent;
 import de.unibox.client.events.RequestType;
@@ -21,9 +17,12 @@ import de.unibox.client.thread.worker.RunnableDatabaseAgent;
 import de.unibox.client.thread.worker.RunnableLoginAgent;
 import de.unibox.client.thread.worker.RunnableMessageMediator;
 import de.unibox.client.thread.worker.RunnableMessageSender;
+import de.unibox.core.external.Base64Coder;
 import de.unibox.core.network.object.CommunicatorMessage;
 import de.unibox.core.network.object.CommunicatorMessageType;
 import de.unibox.core.provider.Helper;
+//import org.apache.log4j.Logger;
+import de.unibox.core.provider.Logger;
 
 /**
  * The Class ClientProvider.
@@ -65,7 +64,7 @@ public class ClientProvider {
 
 	/** The username. */
 	private static String username = null;
-	
+
 	/**
 	 * Bind.
 	 *
@@ -79,14 +78,15 @@ public class ClientProvider {
 		try {
 			final Stage stage = primaryStage;
 			final Node node = stage.getScene().getRoot();
-			ClientProvider.log.info(ClientProvider.class.getSimpleName()
+			ClientProvider.log.debug(ClientProvider.class.getSimpleName()
 					+ ": binding " + primaryStage);
 			node.addEventHandler(CommunicationEvent.INCOMING_MESSAGE,
 					messageHandler);
 			CommunicationEvent.setTarget(node);
 		} catch (final Exception e) {
-			ClientProvider.log.error(ClientProvider.class.getSimpleName()
-					+ ": bind() failed.. Stage or IncomingMessageHandler are NULL.");
+			ClientProvider.log
+					.error(ClientProvider.class.getSimpleName()
+							+ ": bind() failed.. Stage or IncomingMessageHandler are NULL.");
 			e.printStackTrace();
 		}
 	}
@@ -98,19 +98,19 @@ public class ClientProvider {
 		try {
 
 			ThreadEngine.getInstance().run(new RunnableMessageSender());
-			ClientProvider.log.info(ClientProvider.class.getSimpleName()
+			ClientProvider.log.debug(ClientProvider.class.getSimpleName()
 					+ ": RunnableMessageSender started..");
 
 			ThreadEngine.getInstance().run(new RunnableMessageMediator());
-			ClientProvider.log.info(ClientProvider.class.getSimpleName()
+			ClientProvider.log.debug(ClientProvider.class.getSimpleName()
 					+ ": RunnableMessageMediator started..");
 
 			ThreadEngine.getInstance().run(new RunnableCometListener());
-			ClientProvider.log.info(ClientProvider.class.getSimpleName()
+			ClientProvider.log.debug(ClientProvider.class.getSimpleName()
 					+ ": RunnableCometListener started..");
 
 			ThreadEngine.getInstance().run(new RunnableDatabaseAgent());
-			ClientProvider.log.info(ClientProvider.class.getSimpleName()
+			ClientProvider.log.debug(ClientProvider.class.getSimpleName()
 					+ ": RunnableDatabaseAgent started..");
 
 		} catch (final Exception e) {
@@ -261,7 +261,7 @@ public class ClientProvider {
 	 */
 	public static void recieveMessage(final CommunicatorMessage message) {
 		ClientProvider.log.info(ClientProvider.class.getSimpleName()
-				+ ": received message: " + message);
+				+ ": received message: [" + message.getName() + "] " + Base64Coder.decodeString(message.getMessage()));
 		ClientProvider.getIncomingMessages().add(message);
 	}
 
@@ -310,7 +310,7 @@ public class ClientProvider {
 	 */
 	public static void sendCustomMessage(final CommunicatorMessage message) {
 		ClientProvider.log.info(ClientProvider.class.getSimpleName()
-				+ ": sending message: " + message);
+				+ ": sending message: [" + message.getName() + "] " + Base64Coder.decodeString(message.getMessage()));
 		ClientProvider.getOutgoingMessages().add(message);
 	}
 
@@ -360,7 +360,7 @@ public class ClientProvider {
 	 *            the new cookie
 	 */
 	public static void setCookie(final String cookie) {
-		ClientProvider.log.info(ClientProvider.class.getSimpleName()
+		ClientProvider.log.debug(ClientProvider.class.getSimpleName()
 				+ ": received cookie: " + cookie);
 		ClientProvider.cookie = cookie;
 	}

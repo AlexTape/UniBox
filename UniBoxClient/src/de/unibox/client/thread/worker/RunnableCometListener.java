@@ -112,8 +112,8 @@ public class RunnableCometListener extends ThreadTaskImpl {
 			}
 			e.printStackTrace();
 		} finally {
-			ThreadTaskImpl.log.debug(RunnableMessageSender.class.getSimpleName()
-					+ ": Listener shutdown!");
+			ThreadTaskImpl.log.debug(RunnableMessageSender.class
+					.getSimpleName() + ": Listener shutdown!");
 		}
 	}
 

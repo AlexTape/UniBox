@@ -15,81 +15,87 @@ import de.unibox.client.api.IncomingMessageHandler;
  */
 public class DemoApplication extends Application {
 
-    /**
-     * The main method.
-     *
-     * @param args
-     *            the arguments
-     */
-    public static void main(final String[] args) {
-        Application.launch(args);
-    }
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
+	public static void main(final String[] args) {
+		Application.launch(args);
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see javafx.application.Application#start(javafx.stage.Stage)
-     */
-    @Override
-    public final void start(final Stage primaryStage) {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
+	@Override
+	public final void start(final Stage primaryStage) {
+		
+		// set logging for Client API
+//		Logger.setDebugLogging(false);
+//		Logger.setInfoLogging(false);
+//		Logger.setWarningsLogging(false);
+//		Logger.setErrorLogging(false);
+		
+		// define server location
+		ClientProvider.setIp("localhost");
 
-        // define server location
-        ClientProvider.setIp("localhost");
-        
-        // define user credentials
-        ClientProvider.setUsername("Admin");
-        ClientProvider.setPassword("user");
+		// define user credentials
+		ClientProvider.setUsername("Admin");
+		ClientProvider.setPassword("user");
 
-        // login and connect
-        ClientProvider.login();
-        ClientProvider.connect();
+		// login and connect
+		ClientProvider.login();
+		ClientProvider.connect();
 
-        // simple javafx application demo
-        primaryStage.setTitle("Hello World!");
-        Button btn = new Button();
-        btn.setText("Say 'Hello to Chat and JavaClients'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+		// simple javafx application demo
+		primaryStage.setTitle("Hello World!");
+		Button btn = new Button();
+		btn.setText("Say 'Hello to Chat and JavaClients'");
+		btn.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
+			@Override
+			public void handle(ActionEvent event) {
 
-                System.out.println("Log: Sending Messages");
+				System.out.println("Log: Sending Messages");
 
-                // this message will be received by all clients joined the same
-                // game
-                ClientProvider.sendGameMessage("Hello Game Clients!");
+				// this message will be received by all clients joined the same
+				// game
+				ClientProvider.sendGameMessage("Hello Game Clients!");
 
-                // this message will be displayed in the chat panel
-                ClientProvider.sendChatMessage("Hello Chat!");
-            }
-        });
+				// this message will be displayed in the chat panel
+				ClientProvider.sendChatMessage("Hello Chat!");
+			}
+		});
 
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        primaryStage.setScene(new Scene(root, 300, 250));
-        primaryStage.show();
+		StackPane root = new StackPane();
+		root.getChildren().add(btn);
+		primaryStage.setScene(new Scene(root, 300, 250));
+		primaryStage.show();
 
-        /**
-         * UniBoxClient: bind event handler for incoming messages.
-         */
-        ClientProvider.bind(primaryStage, new IncomingMessageHandler() {
+		/**
+		 * UniBoxClient: bind event handler for incoming messages.
+		 */
+		ClientProvider.bind(primaryStage, new IncomingMessageHandler() {
 
-            /*
-             * (non-Javadoc)
-             * 
-             * @see
-             * de.unibox.client.api.IncomingMessageHandler#handle(java.lang.
-             * String, java.lang.String)
-             */
-            @Override
-            public void handle(final String user, final String msg) {
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * de.unibox.client.api.IncomingMessageHandler#handle(java.lang.
+			 * String, java.lang.String)
+			 */
+			@Override
+			public void handle(final String user, final String msg) {
 
-                // log incoming messages to console
-                System.out.println("[new message] From:\"" + user
-                        + "\" Content:\"" + msg + "\"");
+				// log incoming messages to console
+				System.out.println("Log: new message from:\"" + user
+						+ "\" Content:\"" + msg + "\"");
 
-            }
-        });
-    }
+			}
+		});
+	}
 
 }

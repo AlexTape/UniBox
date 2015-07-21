@@ -5,40 +5,87 @@ package de.unibox.core.provider;
  */
 public class Logger {
 
-	private String mName;
+	private static boolean debugLogging = false;
+
+	private static boolean errorLogging = true;
+
+	private static boolean infoLogging = true;
 
 	private static Logger instance;
 
-	private Logger(String name) {
-		this.mName = name;
-	}
+	private static boolean warningsLogging = true;
 
-	public static Logger getLogger(String name) {
+	public static Logger getLogger(final String name) {
 		if (Logger.instance == null) {
 			Logger.instance = new Logger(name);
 		}
 		return Logger.instance;
 	}
-	
-	public void debug(String msg) {
-		System.out.println("[DEBUG] " + msg);
+
+	public static boolean isDebugLogging() {
+		return Logger.debugLogging;
 	}
-	
-	public void info(String msg) {
-		System.out.println("[INFO] " + msg);
+
+	public static boolean isErrorLogging() {
+		return Logger.errorLogging;
 	}
-	
-	public void error(String msg) {
-		System.err.println("[ERROR] " + msg);
+
+	public static boolean isInfoLogging() {
+		return Logger.infoLogging;
 	}
-	
-	public void warn(String msg) {
-		System.out.println("[WARNING] " + msg);
+
+	public static boolean isWarningsLogging() {
+		return Logger.warningsLogging;
+	}
+
+	public static void setDebugLogging(final boolean debugLogging) {
+		Logger.debugLogging = debugLogging;
+	}
+
+	public static void setErrorLogging(final boolean errorLogging) {
+		Logger.errorLogging = errorLogging;
+	}
+
+	public static void setInfoLogging(final boolean infoLogging) {
+		Logger.infoLogging = infoLogging;
+	}
+
+	public static void setWarningsLogging(final boolean warningsLogging) {
+		Logger.warningsLogging = warningsLogging;
+	}
+
+	private final String mName;
+
+	private Logger(final String name) {
+		this.mName = name;
+	}
+
+	public void debug(final String msg) {
+		if (Logger.debugLogging) {
+			System.err.println("[DEBUG] " + msg);
+		}
+	}
+
+	public void error(final String msg) {
+		if (Logger.errorLogging) {
+			System.err.println("[ERROR] " + msg);
+		}
+	}
+
+	public void info(final String msg) {
+		if (Logger.infoLogging) {
+			System.err.println("[INFO] " + msg);
+		}
 	}
 
 	@Override
 	public String toString() {
-		return "Logger [mName=" + mName + "]";
+		return "Logger [mName=" + this.mName + "]";
 	}
 
+	public void warn(final String msg) {
+		if (Logger.warningsLogging) {
+			System.err.println("[WARNING] " + msg);
+		}
+	}
 }

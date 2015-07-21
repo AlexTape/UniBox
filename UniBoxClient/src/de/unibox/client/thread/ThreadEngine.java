@@ -9,12 +9,11 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-//import org.apache.log4j.Logger;
-import de.unibox.core.provider.Logger;
-
 import de.unibox.client.thread.implementation.RejectedExecutionHandlerImpl;
 import de.unibox.client.thread.implementation.ThreadTaskImpl;
 import de.unibox.client.thread.runnable.RunnableThreadMonitor;
+//import org.apache.log4j.Logger;
+import de.unibox.core.provider.Logger;
 
 /**
  * The Class ThreadEngine.
@@ -80,12 +79,14 @@ public class ThreadEngine {
 	 * Block till done.
 	 */
 	public void blockTillDone() {
-		ThreadEngine.log.debug(this.getClass().getSimpleName() + ": blockTillDone()");
+		ThreadEngine.log.debug(this.getClass().getSimpleName()
+				+ ": blockTillDone()");
 		for (final Future<?> future : this.getFutures()) {
 			try {
 				future.get();
 			} catch (InterruptedException | ExecutionException e) {
-				ThreadEngine.log.error(this.getClass().getSimpleName() + ": blockTillDone() failed!");
+				ThreadEngine.log.error(this.getClass().getSimpleName()
+						+ ": blockTillDone() failed!");
 				e.printStackTrace();
 			}
 		}

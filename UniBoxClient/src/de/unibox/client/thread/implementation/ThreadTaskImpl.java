@@ -4,10 +4,9 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import de.unibox.client.api.ClientProvider;
 //import org.apache.log4j.Logger;
 import de.unibox.core.provider.Logger;
-
-import de.unibox.client.api.ClientProvider;
 
 /**
  * The Class ThreadTaskImpl.

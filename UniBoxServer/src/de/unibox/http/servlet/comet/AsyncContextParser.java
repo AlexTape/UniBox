@@ -64,8 +64,8 @@ public class AsyncContextParser {
 							+ comSession.getContext());
 				}
 				Communicator.asyncContextQueue.remove(ac);
-				ac.dispatch();
-				// ac.complete();
+				//ac.dispatch();
+				ac.complete();
 			} else {
 				asyncSessions.put(id, time);
 			}
