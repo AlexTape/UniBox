@@ -7,3 +7,6 @@ UniBoxGame/bin/
 UniBoxServer/build/
 # files
 .checkstyle
+.recommenders
+# classpaths
+.classpath

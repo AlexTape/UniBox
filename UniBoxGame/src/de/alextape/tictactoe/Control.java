@@ -31,9 +31,10 @@ public class Control extends Application {
      */
     public static void main(final String[] args) {
         // init network credentials
-        ClientProvider.setIp("127.0.0.1");
-        ClientProvider.setUsername("Admin");
-        ClientProvider.setPassword("user");
+	    // init credentials
+	    ClientProvider.setIp(args[0]);
+	    ClientProvider.setUsername(args[1]);
+	    ClientProvider.setPassword(args[2]);
         Application.launch(args);
     }
 
