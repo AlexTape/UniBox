@@ -51,7 +51,7 @@
 								name="userbean" property="username" /></a></li>
 					<li><a class="whiteText btnActive" id="triggerDashboard"
 						href="#">Dashboard</a></li>
-					<li><a class="whiteText" id="triggerChat" href="#">Chat</a></li>
+<!-- 					<li><a class="whiteText" id="triggerChat" href="#">Chat</a></li> -->
 					<jsp:getProperty name="userbean" property="adminMenu" />
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button">Options <b class="caret"></b></a>
