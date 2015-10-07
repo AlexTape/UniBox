@@ -681,7 +681,7 @@ var app = {
 				var linkElement = $("#game-" + id);
 				linkElement
 						.attr("href", "javascript:app.leaveGame(" + id + ")");
-				linkElement.text("leave");
+				linkElement.text("Leave");
 			},
 			error : function() {
 				app.newsticker("warning", "Could not rejoin game..!");
@@ -708,7 +708,7 @@ var app = {
 						var linkElement = $("#game-" + id);
 						linkElement.attr("href", "javascript:app.joinGame("
 								+ id + ")");
-						linkElement.text("join");
+						linkElement.text("Join");
 					},
 					error : function() {
 						app.newsticker("warning", "Could not releave game..!");
@@ -734,7 +734,7 @@ var app = {
 				var linkElement = $("#game-" + id);
 				linkElement
 						.attr("href", "javascript:app.leaveGame(" + id + ")");
-				linkElement.text("leave");
+				linkElement.text("Leave");
 			},
 			statusCode : {
 				403 : function() {
